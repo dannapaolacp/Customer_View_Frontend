@@ -1,0 +1,40 @@
+<div class="container mt-5">
+    <h2 class="text-center mb-4 text-primary">Formulario de Identificación</h2>
+    <!-- Formulario para diligenciar datos -->
+    <form (ngSubmit)="onSearch()" [formGroup]="form">
+      <div class="form-group">
+        <label for="type">Tipo de Documento</label>
+        <select id="type" class="form-control" formControlName="type">
+          <option value="C">Cédula de Ciudadanía</option>
+          <option value="P">Pasaporte</option>
+        </select>
+        <div *ngIf="form.get('type')?.touched && form.get('type')?.invalid" class="text-danger">
+          El tipo de documento es obligatorio
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="document">Número de Documento</label>
+        <input
+          type="text"
+          id="document"
+          class="form-control"
+          placeholder="Ingrese su número de documento"
+          formControlName="document"
+        />
+        <!-- Mensajes de Validación  -->
+        <div *ngIf="form.get('document')?.touched && form.get('document')?.invalid" class="text-danger">
+          <div *ngIf="form.get('document')?.errors?.['required']">El número de documento es obligatorio.</div>
+          <div *ngIf="form.get('document')?.errors?.['pattern']">Debe ingresar solo números.</div>
+          <div *ngIf="form.get('document')?.errors?.['minlength']">El número de documento debe tener al menos 4 caracteres.</div>
+          <div *ngIf="form.get('document')?.errors?.['maxlength']">El número de documento no puede tener más de 11 caracteres.</div>
+        </div>
+      </div>
+      
+      <!-- Boton buscar -->
+      <div class="d-flex justify-content-center mt-3">
+        <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Buscar</button>
+      </div>
+    </form>
+  </div>
+  

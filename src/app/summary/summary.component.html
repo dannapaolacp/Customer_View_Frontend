@@ -1,0 +1,28 @@
+<!-- summary.component.html -->
+
+<div class="container">
+    <h1>Resumen del Cliente</h1>
+    <!-- Mensaje de error -->
+    <div *ngIf="error" class="error-message">
+      <p>Error al cargar los datos del cliente. Inténtelo nuevamente.</p>
+    </div>
+  
+    <!-- Mensajes cargados correctamente -->
+    <div *ngIf="clientData">
+      <ul>
+        <li><strong>Nombre:</strong> {{ clientData.firstName }} {{ clientData.lastName }}</li>
+        <li><strong>Teléfono:</strong> {{ clientData.phone }}</li>
+        <li><strong>Dirección:</strong> {{ clientData.address }}</li>
+        <li><strong>Ciudad:</strong> {{ clientData.city }}</li>
+      </ul>
+    </div>
+  
+    <!-- Mensaje de carga o datos faltantes -->
+    <ng-template #noData>
+      <p>Loading or no data available.</p>
+    </ng-template>
+  
+    <!-- Botón para volver -->
+    <button routerLink="/">Volver</button>
+  </div>
+  
